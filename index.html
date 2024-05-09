@@ -2,21 +2,21 @@
 <html>
 <head>
 <title>星星充电储能测算</title>
-<script type="text/javascript"
-src="https://public.tableau.com/javascripts/api/tableau-2.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script type="text/javascript" src="https://public.tableau.com/javascripts/api/tableau-2.min.js"></script>
 <script type="text/javascript">
 function initViz() {
-var containerDiv = document.getElementById("vizContainer"),
-url = "https://public.tableau.com/views/2_0_17151492395470/sheet2_1?:language=zh-CN&publish=yes&:sid=&:display_count=n&:origin=viz_share_link",
-options = {
-hideTabs: true,
-onFirstInteractive: function () {
-console.log("Run this code when the viz has finished loading.");
-}
-};
+    var containerDiv = document.getElementById("vizContainer"),
+        url = "https://public.tableau.com/views/2_0_17151492395470/sheet2_1?:language=zh-CN&publish=yes&:sid=&:display_count=n&:origin=viz_share_link",
+        options = {
+            hideTabs: true,
+            onFirstInteractive: function () {
+                console.log("Run this code when the viz has finished loading.");
+            }
+        };
 
-var viz = new tableau.Viz(containerDiv, url, options);
-// Create a viz object and embed it in the container div.
+    // Create a viz object and embed it in the container div.
+    var viz = new tableau.Viz(containerDiv, url, options);
 }
 </script>
 </head>
