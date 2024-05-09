@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script type="text/javascript" src="https://public.tableau.com/javascripts/api/tableau-2.min.js"></script>
 <style>
-/* 尝试隐藏Tableau底部的分享和下载按钮 */
-.tabToolbarButton.shareDownload, .tabToolbarButton.tabAuthLink {
+/* 通过CSS尽可能隐藏工具栏和按钮 */
+.tabToolbarButton.shareDownload, .tabToolbarButton.tabAuthLink, .tabToolbarButton.openInNewTab {
     display: none !important;
 }
 </style>
@@ -19,8 +19,8 @@ function initViz() {
             hideToolbar: true,
             onFirstInteractive: function () {
                 console.log("Run this code when the viz has finished loading.");
-                // 通过JavaScript尝试隐藏工具栏和按钮
-                hideTableauOptions();
+                // 定期隐藏工具栏和按钮
+                intervalHide();
             }
         };
 
@@ -28,12 +28,16 @@ function initViz() {
     var viz = new tableau.Viz(containerDiv, url, options);
 }
 
-function hideTableauOptions() {
-    // 尝试隐藏特定的Tableau工具栏选项
-    var toolbarDiv = document.querySelector(".tabToolbar");
-    if (toolbarDiv) {
-        toolbarDiv.style.display = 'none';
-    }
+function intervalHide() {
+    var checkExist = setInterval(function() {
+        var toolbarButtons = document.querySelectorAll('.tabToolbarButton');
+        if (toolbarButtons.length) {
+            toolbarButtons.forEach(function(button) {
+                button.style.display = 'none';
+            });
+            clearInterval(checkExist);
+        }
+    }, 100); // 每100毫秒检查一次
 }
 </script>
 </head>
