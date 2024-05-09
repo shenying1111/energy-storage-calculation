@@ -4,19 +4,36 @@
 <title>星星充电储能测算</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script type="text/javascript" src="https://public.tableau.com/javascripts/api/tableau-2.min.js"></script>
+<style>
+/* 尝试隐藏Tableau底部的分享和下载按钮 */
+.tabToolbarButton.shareDownload, .tabToolbarButton.tabAuthLink {
+    display: none !important;
+}
+</style>
 <script type="text/javascript">
 function initViz() {
     var containerDiv = document.getElementById("vizContainer"),
         url = "https://public.tableau.com/views/2_0_17151492395470/sheet2_1?:language=zh-CN&publish=yes&:sid=&:display_count=n&:origin=viz_share_link",
         options = {
             hideTabs: true,
+            hideToolbar: true,
             onFirstInteractive: function () {
                 console.log("Run this code when the viz has finished loading.");
+                // 通过JavaScript尝试隐藏工具栏和按钮
+                hideTableauOptions();
             }
         };
 
-    // Create a viz object and embed it in the container div.
+    // 创建并嵌入视图
     var viz = new tableau.Viz(containerDiv, url, options);
+}
+
+function hideTableauOptions() {
+    // 尝试隐藏特定的Tableau工具栏选项
+    var toolbarDiv = document.querySelector(".tabToolbar");
+    if (toolbarDiv) {
+        toolbarDiv.style.display = 'none';
+    }
 }
 </script>
 </head>
